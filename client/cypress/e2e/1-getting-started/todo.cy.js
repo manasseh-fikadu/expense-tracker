@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-import { slowCypressDown } from 'cypress-slow-down'
+// import { slowCypressDown } from 'cypress-slow-down'
 
-slowCypressDown()
+// slowCypressDown()
 
 describe('Expense tracker app', () => {
   beforeEach(() => {
@@ -33,18 +34,19 @@ describe('Expense tracker app', () => {
       cy.get('.amt').clear().type(+1000)
       cy.get('.btn').click()
 
-      // income shoukld have increased by 1000
+      //income should have increased by 1000
       cy.get('.income').should('have.text', 'Income')
-
+      // // check if there is a achange in the display of the income
+      // cy.get('.money-plus').should('have.text', '$1,000.00')
     })
   })
 
   describe('Checking form input (Expense)', () => {
     // insert the input text 'Salary' and insert the input amount '1000'
     it('inserts text, amount, and clicks the button', () => {
-      cy.get('.case').type('Salary')
+      cy.get('.case').type('Food')
       // persist the text
-      cy.get('.case').should('have.value', 'Salary')
+      cy.get('.case').should('have.value', 'Food')
       cy.get('.amt').clear().type('-100')
       cy.get('.btn').click()
     })
