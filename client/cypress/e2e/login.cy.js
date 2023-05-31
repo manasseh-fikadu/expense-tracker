@@ -3,13 +3,37 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-// import { slowCypressDown } from 'cypress-slow-down'
+import { slowCypressDown } from 'cypress-slow-down'
 
-// slowCypressDown()
+slowCypressDown(100)
 
 describe("Login to the app", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/login");
+  });
+
+  it("renders the sign-in form", () => {
+    cy.get("form").should("exist");
+    cy.get("input[name='first_name']").should("exist");
+    cy.get("input[name='password']").should("exist");
+    cy.get("button[type='submit']").should("exist");
+  });
+
+  it("submits the sign-in form with valid data", () => {
+    // Replace the following values with valid credentials for your application
+    cy.get("input[name='first_name']").type("username_or_email");
+    cy.get("input[name='password']").type("password");
+    cy.get("button[type='submit']").click();
+
+    // Check if the user is redirected to the homepage after successful login
+    cy.url().should("eq", "http://localhost:3000/");
+
+    // Add any additional assertions to verify successful login, e.g., checking for a success message or checking if the user is logged in
+  });
+
+  it("navigates back to the homepage", () => {
+    cy.get("a[href='/']").click();
+    cy.url().should("eq", "http://localhost:3000/");
   });
 
   it('displays "Username or email address"', () => {
@@ -20,14 +44,6 @@ describe("Login to the app", () => {
   it('displays "Password"', () => {
     cy.get(".password1").type("minase");
     cy.get(".password1").should("have.text", "");
-  });
-
-  // click the login button
-  it("inserts username and password and clicks the button", () => {
-    cy.get(".username").type("minase");
-    cy.get(".password1").type("minase");
-    cy.get(".sub_btn").click();
-    cy.url().should("include", "first_name");
   });
 
   it("should contain the appropriate form fields", () => {

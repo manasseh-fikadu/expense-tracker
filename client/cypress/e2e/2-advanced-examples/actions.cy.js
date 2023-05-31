@@ -1,6 +1,10 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
+import { slowCypressDown } from 'cypress-slow-down'
+
+slowCypressDown(100)
+
 context('Actions', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')

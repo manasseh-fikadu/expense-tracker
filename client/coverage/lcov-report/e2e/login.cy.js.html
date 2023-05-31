@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>28/28</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/28</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -117,9 +117,23 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,8 +141,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -141,9 +176,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -176,13 +208,37 @@
 /* eslint-disable no-undef */
 /// &lt;reference types="cypress" /&gt;
 &nbsp;
-// import { slowCypressDown } from 'cypress-slow-down'
+import { slowCypressDown } from 'cypress-slow-down'
 &nbsp;
-// slowCypressDown()
+slowCypressDown(100)
 &nbsp;
 describe("Login to the app", () =&gt; {
   beforeEach(() =&gt; {
     cy.visit("http://localhost:3000/login");
+  });
+&nbsp;
+  it("renders the sign-in form", () =&gt; {
+    cy.get("form").should("exist");
+    cy.get("input[name='first_name']").should("exist");
+    cy.get("input[name='password']").should("exist");
+    cy.get("button[type='submit']").should("exist");
+  });
+&nbsp;
+  it("submits the sign-in form with valid data", () =&gt; {
+    // Replace the following values with valid credentials for your application
+    cy.get("input[name='first_name']").type("username_or_email");
+    cy.get("input[name='password']").type("password");
+    cy.get("button[type='submit']").click();
+&nbsp;
+    // Check if the user is redirected to the homepage after successful login
+    cy.url().should("eq", "http://localhost:3000/");
+&nbsp;
+    // Add any additional assertions to verify successful login, e.g., checking for a success message or checking if the user is logged in
+  });
+&nbsp;
+  it("navigates back to the homepage", () =&gt; {
+    cy.get("a[href='/']").click();
+    cy.url().should("eq", "http://localhost:3000/");
   });
 &nbsp;
   it('displays "Username or email address"', () =&gt; {
@@ -193,14 +249,6 @@ describe("Login to the app", () =&gt; {
   it('displays "Password"', () =&gt; {
     cy.get(".password1").type("minase");
     cy.get(".password1").should("have.text", "");
-  });
-&nbsp;
-  // click the login button
-  it("inserts username and password and clicks the button", () =&gt; {
-    cy.get(".username").type("minase");
-    cy.get(".password1").type("minase");
-    cy.get(".sub_btn").click();
-    cy.url().should("include", "first_name");
   });
 &nbsp;
   it("should contain the appropriate form fields", () =&gt; {
@@ -232,7 +280,7 @@ describe("Login to the app", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-29T09:57:13.407Z
+                at 2023-05-31T08:27:10.886Z
             </div>
         <script src="../prettify.js"></script>
         <script>

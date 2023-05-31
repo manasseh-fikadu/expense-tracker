@@ -78,7 +78,7 @@ export const GlobalProvider = ({ children }) => {
   async function login() {
     try {
       console.log("login");
-      const res = await axios.get("/api/v1/users/login/647703bbf01bf12f34ccb514");
+      const res = await axios.get("/api/v1/users/login/6476cc44df56f113102af36d");
       console.log(res.data);
       dispatch({
         type: "LOGIN_SUCCESS",

@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-// import { slowCypressDown } from 'cypress-slow-down'
+import { slowCypressDown } from 'cypress-slow-down'
 
-// slowCypressDown()
+slowCypressDown(100)
 
 // cypress/integration/sign_up_page.spec.js
 

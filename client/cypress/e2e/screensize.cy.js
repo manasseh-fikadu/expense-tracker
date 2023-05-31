@@ -3,6 +3,10 @@
 //
 // npm run cypress:open
 
+import { slowCypressDown } from 'cypress-slow-down'
+
+slowCypressDown(100)
+
 describe('Test the app for different screen sizes', () => {
     it('Test the app for different screen sizes', () => {
         cy.visit('http://localhost:3000');
