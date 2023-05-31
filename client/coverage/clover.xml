@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1685354781290" clover="3.2.0">
-  <project timestamp="1685354781290" name="All files">
-    <metrics statements="25" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="7" elements="34" coveredelements="30" complexity="0" loc="25" ncloc="25" packages="2" files="3" classes="3"/>
-    <package name="e2e">
-      <metrics statements="25" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="7"/>
-      <file name="signup.cy.js" path="C:\Users\minas\Documents\expense-tracker-mern\expense-tracker\client\cypress\e2e\signup.cy.js">
-        <metrics statements="25" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="7"/>
+<coverage generated="1685515445501" clover="3.2.0">
+  <project timestamp="1685515445501" name="All files">
+    <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11" elements="37" coveredelements="37" complexity="0" loc="26" ncloc="26" packages="2" files="3" classes="3"/>
+    <package name="e2e.1-getting-started">
+      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
+      <file name="todo.cy.js" path="C:\Users\minas\Documents\expense-tracker-mern\expense-tracker\client\cypress\e2e\1-getting-started\todo.cy.js">
+        <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
       </file>
     </package>
     <package name="support">

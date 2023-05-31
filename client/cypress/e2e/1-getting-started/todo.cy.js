@@ -31,7 +31,9 @@ describe('Expense tracker app', () => {
       // persist the text
       cy.get('.case').should('have.value', 'Salary')
       // remove the value 0 from the input field initially and insert the value +1000
-      cy.get('.amt').clear().type(+1000)
+      cy.get('.amt').clear().type('+1000')
+      // TODO: check if the value is present in the input field
+      cy.get('.amt').should('have.value', '+1000')
       cy.get('.btn').click()
 
       //income should have increased by 1000

@@ -1,44 +1,35 @@
-import React from 'react'
+import React, {useContext}  from 'react'
 import { Link } from 'react-router-dom'
-
+import { GlobalContext } from '../context/GlobalState';
+import { useHistory } from 'react-router-dom';
 import '../App.css'
 
 export default function SignInPage() {
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
-
+    const { login } = useContext(GlobalContext);
+    const navigator = useHistory(); 
     const handleLogin = (e) => {
         e.preventDefault();
-
-        const data = {
-            username: username,
-            password: password
-        }
-
-        JSON.stringify(data);
-        console.log(data);
-
-        const name = document.getElementById("login");
-        name.innerHTML = username;
+        login();
+        navigator.push("/");
     }
 
 
     return (
         <div className="text-center m-5-auto">
             <h2>Sign in to us</h2>
-            <form action="/">
+            <form action="/" onSubmit={handleLogin}>
                 <p>
                     <label>Username or email address</label><br/>
-                    <input type="text" name="first_name" className="username" onChange={e => setUsername(e.target.value)} required />
+                    <input type="text" name="first_name" className="username" required />
                 </p>
                 <p>
                     <label>Password</label>
                     <Link to="/forget-password"><label className="right-label">Forget password?</label></Link>
                     <br/>
-                    <input type="password" name="password" className="password1" onChange={e => setPassword(e.target.value)} required />
+                    <input type="password" name="password" className="password1" required />
                 </p>
                 <p>
-                    <button id="sub_btn" type="submit" className="sub_btn" onSubmit={handleLogin}>Login</button>
+                    <button id="sub_btn" type="submit" className="sub_btn">Login</button>
                 </p>
             </form>
             <footer>

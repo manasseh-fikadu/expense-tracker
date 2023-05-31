@@ -22,6 +22,7 @@ const UserSchema = new momgoose.Schema({
             /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
             'Please add a valid password'
             ],
+            // one example of a valid password is: 12345678aA, 
         select: false
     },
 });

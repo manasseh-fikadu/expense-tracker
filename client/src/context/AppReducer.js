@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
   switch(action.type) {
     case 'GET_TRANSACTIONS':
@@ -21,16 +22,36 @@ export default (state, action) => {
         ...state,
         error: action.payload
       }
-    case 'GET_USERS':
+    case 'LOGIN_SUCCESS':
       return {
         ...state,
         loading: false,
-        users: action.payload
+        isLogged: true,
+        users: action.payload,
+        name: action.payload.name
+      }
+    case 'GET_FAIL':
+      return {
+        ...state,
+        error: action.payload
       }
     case 'ADD_USER':
       return {
         ...state,
+        isLogged: true,
         users: [...state.users, action.payload]
+      }
+    case 'REGISTER_FAIL':
+      return {
+        ...state,
+        error: action.payload
+      }
+    case 'LOGOUT':
+      return {
+        ...state,
+        isLogged: false,
+        users: [],
+        name: null
       }
     default:
       return state;

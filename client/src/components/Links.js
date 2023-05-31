@@ -1,21 +1,42 @@
-import React from "react";
+import React, {useContext} from "react";
+import { GlobalContext } from "../context/GlobalState";
+
+import "../App.css";
+import { Link } from "react-router-dom";
 
 export const Links = () => {
-  var first_name = "";
-  const url = window.location.href;
-  if (url.includes("first_name")) {
-    first_name = url.substring(
-      url.indexOf("=") + 1,
-      url.indexOf("&")
-    );
-    first_name.toUpperCase();
-  }
+  // check if user is logged in
+  const { isLogged, logout } = useContext(GlobalContext);
+
+  console.log(isLogged);
+
+  // handle logout
+  const handleLogout = (ev) => {
+    ev.preventDefault();
+    logout();
+    window.location.href = "/";
+  };
   return (
     <div>
-      <a className="signup" href="/register">
-        {first_name ? first_name : "Sign Up"}
-      </a>
-      {first_name ? null : <a className="login" href="/login">Login</a>}
+      {/* conditionally render name if user is logged in other wise render the buttons */}
+      {isLogged ? (
+        <div className="">
+          <h1>Welcome!</h1>
+          <Link to="/">
+            <button className="login" onClick={handleLogout}>Logout</button>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login">
+            <button className="login">Login</button>
+          </Link>
+          <Link to="/register">
+            <button className="signup">Sign Up</button>
+          </Link>
+        </div>
+      )}
+
     </div>
   );
 };

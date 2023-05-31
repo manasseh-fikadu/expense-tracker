@@ -1,14 +1,17 @@
-import React, { createContext, useReducer } from 'react';
-import AppReducer from './AppReducer';
-import axios from 'axios';
+import React, { createContext, useReducer } from "react";
+import AppReducer from "./AppReducer";
+import axios from "axios";
 
 // Initial state
 const initialState = {
   transactions: [],
-  user: null,
+  users: [],
   error: null,
-  loading: true
-}
+  loading: true,
+  isLogged: false,
+  name: null,
+};
+
 
 // Create context
 export const GlobalContext = createContext(initialState);
@@ -20,16 +23,16 @@ export const GlobalProvider = ({ children }) => {
   // Actions
   async function getTransactions() {
     try {
-      const res = await axios.get('/api/v1/transactions');
+      const res = await axios.get("/api/v1/transactions");
 
       dispatch({
-        type: 'GET_TRANSACTIONS',
-        payload: res.data.data
+        type: "GET_TRANSACTIONS",
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
-        type: 'TRANSACTION_ERROR',
-        payload: err.response.data.error
+        type: "TRANSACTION_ERROR",
+        payload: err.response.data.error,
       });
     }
   }
@@ -39,13 +42,13 @@ export const GlobalProvider = ({ children }) => {
       await axios.delete(`/api/v1/transactions/${id}`);
 
       dispatch({
-        type: 'DELETE_TRANSACTION',
-        payload: id
+        type: "DELETE_TRANSACTION",
+        payload: id,
       });
     } catch (err) {
       dispatch({
-        type: 'TRANSACTION_ERROR',
-        payload: err.response.data.error
+        type: "TRANSACTION_ERROR",
+        payload: err.response.data.error,
       });
     }
   }
@@ -53,77 +56,81 @@ export const GlobalProvider = ({ children }) => {
   async function addTransaction(transaction) {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
-      }
-    }
+        "Content-Type": "application/json",
+      },
+    };
 
     try {
-      const res = await axios.post('/api/v1/transactions', transaction, config);
+      const res = await axios.post("/api/v1/transactions", transaction, config);
 
       dispatch({
-        type: 'ADD_TRANSACTION',
-        payload: res.data.data
+        type: "ADD_TRANSACTION",
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
-        type: 'TRANSACTION_ERROR',
-        payload: err.response.data.error
+        type: "TRANSACTION_ERROR",
+        payload: err.response.data.error,
       });
     }
   }
 
-  async function login(email, password) {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    const body = JSON.stringify({ email, password });
+  async function login() {
     try {
-      const res = await axios.post('/api/v1/login:id', body, config);
+      console.log("login");
+      const res = await axios.get("/api/v1/users/login/6476cc44df56f113102af36d");
+      console.log(res.data);
       dispatch({
-        type: 'LOGIN_SUCCESS',
-        payload: res.data
+        type: "LOGIN_SUCCESS",
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
-        type: 'LOGIN_FAIL',
-        payload: err.response.data.error
+        type: "LOGIN_FAIL",
+        payload: err.response.data.error,
       });
     }
   }
 
-  async function register(name, email, password) {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    const body = JSON.stringify({ name, email, password });
+  async function register(user) {
     try {
-      const res = await axios.post('/api/v1/signup', body, config);
+      console.log(user);
+      const res = await axios.post("/api/v1/users/signup", user);
       dispatch({
-        type: 'REGISTER_SUCCESS',
-        payload: res.data
+        type: "ADD_USER",
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
-        type: 'REGISTER_FAIL',
-        payload: err.response.data.error
+        type: "REGISTER_FAIL",
+        payload: err.response.data.error,
       });
     }
   }
 
-  return (<GlobalContext.Provider value={{
-    transactions: state.transactions,
-    error: state.error,
-    loading: state.loading,
-    getTransactions,
-    deleteTransaction,
-    addTransaction,
-    login,
-    register,
-  }}>
-    {children}
-  </GlobalContext.Provider>);
-}
+  async function logout() {
+      dispatch({
+        type: "LOGOUT",
+      });
+  }
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        transactions: state.transactions,
+        error: state.error,
+        loading: state.loading,
+        isLogged: state.isLogged,
+        name: state.name,
+        getTransactions,
+        deleteTransaction,
+        addTransaction,
+        login,
+        register,
+        logout,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};
