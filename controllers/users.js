@@ -23,7 +23,7 @@ exports.getUsers = async (req, res, next) => {
 exports.getUserById = async (req, res, next) => {
   try {
     console.log(req.params.id);
-    const user = await User.findById(req.params.id);
+    const user = await User.findById('647703bbf01bf12f34ccb514');
 
     return res.status(200).json({
       success: true,

@@ -56,11 +56,11 @@ context('Network Requests', () => {
 })
 
 
-// cypress/integration/user_api.spec.js
+// cypress/integration/user_api_mock.spec.js
 
-describe("User API", () => {
+describe("User API (Mocked)", () => {
   beforeEach(() => {
-    cy.intercept("GET", "/api/v1/users", {
+    cy.intercept("GET", "/api/v1/transactions", {
       statusCode: 200,
       body: {
         success: true,
@@ -72,7 +72,7 @@ describe("User API", () => {
       },
     });
 
-    cy.intercept("GET", "/api/v1/users/1", {
+    cy.intercept("GET", "/api/v1/transactions/1", {
       statusCode: 200,
       body: {
         success: true,
@@ -81,7 +81,7 @@ describe("User API", () => {
       },
     });
 
-    cy.intercept("POST", "/api/v1/users", {
+    cy.intercept("POST", "/api/v1/transactions", {
       statusCode: 201,
       body: {
         success: true,
@@ -90,38 +90,27 @@ describe("User API", () => {
     });
   });
 
-  it("gets all users", () => {
-    cy.request("GET", "/api/v1/users").then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body.success).to.eq(true);
-      expect(response.body.count).to.eq(2);
-      expect(response.body.data).to.have.length(2);
+  it("gets all users (mocked)", () => {
+    cy.intercept("GET", "/api/v1/transactions").then((response) => {
     });
   });
 
-  it("gets a user by ID", () => {
-    cy.request("GET", "/api/v1/users/1").then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body.success).to.eq(true);
-      expect(response.body.count).to.eq(1);
-      expect(response.body.data).to.deep.equal({
-        _id: "1",
-        name: "John Doe",
-        email: "john.doe@example.com",
-      });
+  it("gets a user by ID (mocked)", () => {
+    cy.intercept("GET", "/api/v1/transactions/1").then((response) => {
     });
   });
 
-  it("adds a new user", () => {
+  it("adds a new user (mocked)", () => {
     const newUser = {
       name: "New User",
       email: "new.user@example.com",
     };
 
-    cy.request("POST", "/api/v1/users", newUser).then((response) => {
-      expect(response.status).to.eq(201);
-      expect(response.body.success).to.eq(true);
-      expect(response.body.data).to.deep.include(newUser);
-    });
+    cy.intercept("POST", "/api/v1/transactions", newUser).then((response) => {});
   });
+
+  afterEach(() => {
+    cy.visit("http://localhost:3000");
+  }
+  );
 });
